@@ -1,1 +1,2 @@
-# couponcoco.github.io
+# CouponCoCo.org website
+
