@@ -1,0 +1,19 @@
+{
+  "name": "couponcoco-org",
+  "version": "0.0.1",
+  "description": "CouponCoCo.org website",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/couponcoco/couponcoco-org.git"
+  },
+  "author": "couponcoco core contributors",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/couponcoco/couponcoco-org/issues"
+  },
+  "homepage": "https://github.com/couponcoco/couponcoco-org#readme"
+}
