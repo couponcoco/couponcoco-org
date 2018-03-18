@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:7.10
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      
+      - restore_cache:
+          keys:
+          - v1-func-dependencies-{{ checksum "./functions/package.json" }}
+          - v1-func-dependencies-
+      
+      - run: npm --prefix ./functions install ./functions
+      
+      - save_cache:
+          paths:
+            - functions/node_modules
+          key: v1-func-dependencies-{{ checksum "./functions/package.json" }}
+          
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      
+      - run: npm install
+      
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      
+      - run: npm run build
+      
+      - run: npm test
+
+      - run:
+          name: Deploy
+          command: node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
